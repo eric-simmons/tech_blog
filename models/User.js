@@ -52,8 +52,8 @@ User.init({
         sequelize,
         timestamps: false,
         freezeTableName: true,
-        underscored: true,
-        modelName: 'user',
+        modelName: 'user'
     }
-
 )
+
+module.exports = User

@@ -4,11 +4,13 @@ const signupForm = document.getElementById('signup')
 const handleSubmit = event => {
   event.preventDefault()
 
+  //if form submit is the signup form, hit api users route, otherwise login route
   const formId = event.target.id
   const url = formId === 'signup'
     ? '/api/users'
     : '/api/users/login'
 
+    //destructuring and renaming
   const { 
     name: nameInput, 
     email: emailInput, 
@@ -16,6 +18,7 @@ const handleSubmit = event => {
   } = event.target.elements
 
   const userData = {
+    //? optional chaining name input for when there is no name
     name: nameInput?.value,
     email: emailInput.value,
     password: passwordInput.value

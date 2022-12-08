@@ -1,17 +1,11 @@
 [
     {
-        "content": "This is a truly amazing blog post, great work!",
-        "blog_id": 1,
-        "user_id": 1
+        "content": "This is a truly amazing blog post, great work!"
     },
     {
-        "content": "Wow this is incredible blogging on your part!",
-        "blog_id": 2,
-        "user_id": 2
+        "content": "Wow this is incredible blogging on your part!"
     },
     {
-        "content": "OMG I cant get over how crazy this blog is...changed my life!!!",
-        "blog_id": 3,
-        "user_id": 3
+        "content": "OMG I cant get over how crazy this blog is...changed my life!!!"
     }
 ]

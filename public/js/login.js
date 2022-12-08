@@ -4,17 +4,17 @@ const signupForm = document.getElementById('signup')
 const handleSubmit = event => {
   event.preventDefault()
 
-  //if form submit is the signup form, hit api users route, otherwise login route
+  //get form id from event target
   const formId = event.target.id
-  const url = formId === 'signup'
-    ? '/api/users'
-    : '/api/users/login'
+  //if formId is 'signup' hit api/users route, otherwise hit the login route
+  const url =
+    formId === 'signup' ? '/api/users' : '/api/users/login'
 
-    //destructuring and renaming
-  const { 
-    name: nameInput, 
-    email: emailInput, 
-    password: passwordInput 
+  //destructuring and renaming
+  const {
+    name: nameInput,
+    email: emailInput,
+    password: passwordInput
   } = event.target.elements
 
   const userData = {
@@ -24,6 +24,8 @@ const handleSubmit = event => {
     password: passwordInput.value
   }
 
+  //either create user or signs in
+  //if success go to /dashboard
   fetch(url, {
     method: 'POST',
     headers: {
@@ -33,11 +35,10 @@ const handleSubmit = event => {
   })
     .then(response => {
       if (response.status === 200) {
-        window.location.href = '/'
+        window.location.href = '/dashboard'
       }
     })
     .catch(err => console.log(err))
-
 }
 
 loginForm.addEventListener('submit', handleSubmit)

@@ -1,6 +1,6 @@
-document.getElementById('logout').addEventListener('click', e => {
-    e.preventDefault()
-  
+document.getElementById('logout')
+  .addEventListener('click', event => {
+    event.preventDefault()
     fetch('/api/users/logout', {
       method: "POST"
     })

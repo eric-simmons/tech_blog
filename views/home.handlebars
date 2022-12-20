@@ -1,14 +1,21 @@
 <h1> Welcome to Tech Blog </h1>
-<div class = "list group">
+<div>
+{{#each blogs as |blog|}}
+<div>
+    <div>
+   Title: {{blog.title}}
+    </div>
+   <div>
+   Post:{{blog.content}}
+   </div>
+<div>
+    Date: {{blog.date_created}}
+</div>
+    <br>
 
-{{#each blogs}}
-<a href="/blog/{{id}}" class = "list-group-item list-group-item-action">
-{{title}}
-</a>
-<p>
-{{content}}
-</p>
+   
+</div>
+
 {{/each}}
-
 
 </div>

@@ -25,7 +25,7 @@ const handleSubmit = event => {
   }
 
   //either create user or signs in
-  //if success go to /dashboard
+  //if success go to /home
   fetch(url, {
     method: 'POST',
     headers: {
@@ -35,7 +35,7 @@ const handleSubmit = event => {
   })
     .then(response => {
       if (response.status === 200) {
-        window.location.href = '/dashboard'
+        window.location.href = '/home'
       }
     })
     .catch(err => console.log(err))

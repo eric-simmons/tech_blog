@@ -17,22 +17,18 @@ router.get('/', (req, res) => {
 router.get('/home', async (req, res) => {
     try {
         let blogs = await Blog.findAll({
-            include: [
-                {
-                    model: Comment,
-
-                }]
+            // include: [{model: Comment}]
         })
-
+        console.log(blogs)
         //serialize post data
         blogs = blogs.map(blog => {
             const blogData = blog.get({ plain: true })
 
             return {
                 ...blogData,
-                commentContent: blogData.comments.map(comment => {
-                    return comment.content
-                })
+                // commentContent: blogData.comments.map(comment => {
+                //     return comment.content
+                // })
             }
         })
 

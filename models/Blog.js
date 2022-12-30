@@ -22,7 +22,7 @@ Blog.init({
     },
     date_created: {
         type: DataTypes.DATE,
-        defaultValue:DataTypes.NOW,
+        defaultValue: DataTypes.NOW,
     },
     user_id: {
         type: DataTypes.INTEGER,
@@ -31,13 +31,13 @@ Blog.init({
             key: 'id'
         }
     }
-}, 
-{
-    sequelize,
-    timestamps: false,
-    freezeTableName: true, 
-    modelName: 'blog'
-}
+},
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        modelName: 'blog'
+    }
 )
 
 module.exports = Blog

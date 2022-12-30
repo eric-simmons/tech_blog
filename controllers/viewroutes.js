@@ -1,4 +1,4 @@
-const { User, Blog } = require('../models')
+const { User, Blog, Comment } = require('../models')
 const router = require('express').Router()
 
 router.get('/', (req, res) => {
@@ -8,7 +8,18 @@ router.get('/', (req, res) => {
         })
     }
     catch (error) {
-        res.status(500).json(err)
+        res.status(500).json(error)
+    }
+})
+
+router.get('/dashboard', (req,res)=> {
+    try{
+        res.render('dashboard', {
+            logged_in: req.session.logged_in
+        })
+    }
+    catch(error){
+        res.status(500).json(error)
     }
 })
 
@@ -17,30 +28,29 @@ router.get('/', (req, res) => {
 router.get('/home', async (req, res) => {
     try {
         let blogs = await Blog.findAll({
-            // include: [{model: Comment}]
+          include: [{ model: Comment }]
         })
-        console.log(blogs)
+        
+
         //serialize post data
         blogs = blogs.map(blog => {
             const blogData = blog.get({ plain: true })
-
             return {
                 ...blogData,
-                // commentContent: blogData.comments.map(comment => {
-                //     return comment.content
-                // })
+                commentContent: blogData.comments.map(comment => {
+                    return comment.content
+                })
             }
         })
 
         //pass blogs and session flag into home template
         res.render('home', {
             blogs,
-            // comments,
             user_id: req.session.user_id,
             logged_in: req.session.logged_in
         })
-    } catch (err) {
-        res.status(500).json(err)
+    } catch (error) {
+        res.status(500).json(error)
     }
 })
 
@@ -55,8 +65,8 @@ router.get('/blog/:id', async (req, res) => {
             logged_in: req.session.logged_in
         })
     }
-    catch (err) {
-        res.status(500).json(err)
+    catch (error) {
+        res.status(500).json(error)
     }
 })
 
@@ -80,8 +90,8 @@ router.get('/login', async (req, res) => {
     try {
         res.render('login')
     }
-    catch (err) {
-        res.status(500).json(err)
+    catch (error) {
+        res.status(500).json(error)
     }
 })
 

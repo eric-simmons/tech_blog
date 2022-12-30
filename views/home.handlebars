@@ -1,26 +1,29 @@
 <h1> Welcome to Tech Blog </h1>
 <div>
-{{#each blogs as |blog|}}
-<div>
+    {{#each blogs as |blog|}}
     <div>
-   Title: {{blog.title}}
+        <div>
+            <a href="/blog/{{id}}">{{blog.title}}</a>
+        </div>
+        <div>
+            Post:{{blog.content}}
+        </div>
+        <div>
+            {{!-- Date: {{blog.date_created}} --}}
+        </div>
+        <div>
+            {{#each blog.commentContent as |comment|}}
+            <p>Comment: {{comment}}</p>
+            {{/each}}
+        </div>
+        <br>
+
+
     </div>
-   <div>
-   Post:{{blog.content}}
-   </div>
-<div>
-    {{!-- Date: {{blog.date_created}} --}}
-</div>
-<div>
-    {{!-- {{#each comments as |comment|}}
-    {{comment}}
-    {{/each}} --}}
-</div>
-    <br>
 
-   
-</div>
-
-{{/each}}
+    {{/each}}
 
 </div>
+
+
+<script src="/js/comment.js"></script>

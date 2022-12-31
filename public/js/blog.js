@@ -1,23 +1,26 @@
-const blogBtn = document.querySelector('.blogBtn')
+const blogForm = document.querySelector('.blogForm')
 
 const blogFormHandler = async (event) => {
- 
-    event.preventDefault()
-    console.log('clicked')
-    const title = document.querySelector('.blogTitle').value.trim()
-    const description = document.querySelector('.blogContent').value.trim()
+    console.log(event)
    
-console.log(title, description)
-    if (title && description) {
+    event.preventDefault()
+    
+    const title = document.querySelector('.blogTitle').value.trim()
+    const content = document.querySelector('.blogContent').value.trim()
+
+console.log(title, content)
+    if (title && content) {
         const response = await fetch('/api/blogs', {
             method: 'POST',
-            body: JSON.stringify({ 
-                title, 
-                description }),
+            body: JSON.stringify({
+                title,
+                content
+            }),
             headers: {
                 'Content-Type': 'application/json',
             },
         })
+    
         if (response.ok) {
             console.log('fetched')
             document.location.replace('/home')
@@ -25,9 +28,9 @@ console.log(title, description)
             alert(response.statusText)
         }
     }
-    else{
-        alert("Title and Description required for post")
+    else {
+        alert("Title and content required for post")
     }
 }
 
-blogBtn.addEventListener("submit", blogFormHandler)
+blogForm.addEventListener("submit", blogFormHandler)

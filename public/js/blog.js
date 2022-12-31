@@ -1,11 +1,13 @@
-const blogBtn = document.getElementById('blogBtn')
+const blogBtn = document.querySelector('.blogBtn')
 
 const blogFormHandler = async (event) => {
+ 
     event.preventDefault()
-    const title = document.getElementById('blogTitle').value.trim()
-    const description = document.getElementById('blogContent').value.trim()
+    console.log('clicked')
+    const title = document.querySelector('.blogTitle').value.trim()
+    const description = document.querySelector('.blogContent').value.trim()
    
-
+console.log(title, description)
     if (title && description) {
         const response = await fetch('/api/blogs', {
             method: 'POST',
@@ -17,6 +19,7 @@ const blogFormHandler = async (event) => {
             },
         })
         if (response.ok) {
+            console.log('fetched')
             document.location.replace('/home')
         } else {
             alert(response.statusText)
@@ -26,3 +29,5 @@ const blogFormHandler = async (event) => {
         alert("Title and Description required for post")
     }
 }
+
+blogBtn.addEventListener("submit", blogFormHandler)

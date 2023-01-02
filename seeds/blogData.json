@@ -1,15 +1,18 @@
 [
     {   "id":1,
         "title": "Blog post 1",
-        "content": "Hey World, this is my first blog post. Thanks for checking in!"
+        "content": "Hey World, this is my first blog post. Thanks for checking in!",
+        "user_id": 1
     },
     {   "id":2,
         "title": "Blog post 2",
-        "content": "Hey World, this is my second blog post. Thanks for checking in!"
+        "content": "Hey World, this is my second blog post. Thanks for checking in!",
+        "user_id": 2
        
     },
     {   "id":3,
         "title": "Blog post 3",
-        "content": "Hey World, this is my third blog post. Thanks for checking in!"
+        "content": "Hey World, this is my third blog post. Thanks for checking in!",
+        "user_id": 3
     }
 ]

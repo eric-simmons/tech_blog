@@ -64,26 +64,15 @@ router.get('/home', async (req, res) => {
 //serve up blog by id 
 router.get('/blog/:id', async (req, res) => {
     try {
-
-
-
-
         let blog = await Blog.findByPk(req.params.id,
             {
-                include: [{
-                    model: Comment
+                include: [{ model: Comment },
+                {
+                    model: User,
+                    attributes: ['name']
                 }]
             })
         blog = blog.get({ plain: true })
-
-        console.log(blog)
-        //         // let comments = await Comment.findAll({
-        //         //     where: {
-        //         //         blog_id: req.params.id
-        //         //     },
-        //         // })
-        //         // comments = comments.map(comment => comment.get({ plain: true }))
-
         res.render('blog', {
             blog,
             commentContent: blog.comments.map(comment => {

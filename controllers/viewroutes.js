@@ -12,13 +12,13 @@ router.get('/', (req, res) => {
     }
 })
 
-router.get('/dashboard', (req,res)=> {
-    try{
+router.get('/dashboard', (req, res) => {
+    try {
         res.render('dashboard', {
             logged_in: req.session.logged_in
         })
     }
-    catch(error){
+    catch (error) {
         res.status(500).json(error)
     }
 })
@@ -28,9 +28,16 @@ router.get('/dashboard', (req,res)=> {
 router.get('/home', async (req, res) => {
     try {
         let blogs = await Blog.findAll({
-          include: [{ model: Comment }]
+            include: [
+                {
+                    model: Comment,
+                    include: [{ model: User }]
+                },
+                { model: User }
+            ],
+            order: [['date_created', 'ASC']]
         })
-        
+
 
         //serialize post data
         blogs = blogs.map(blog => {
@@ -56,12 +63,30 @@ router.get('/home', async (req, res) => {
 
 //serve up blog by id 
 router.get('/blog/:id', async (req, res) => {
-    console.log(req, res)
     try {
-        let blog = await Blog.findByPk(req.params.id)
+
+
+
+
+        let blog = await Blog.findByPk(req.params.id,
+            {
+                include: [{
+                    model: Comment
+                }]
+            })
         blog = blog.get({ plain: true })
+
+        console.log(blog)
+        //         // let comments = await Comment.findAll({
+        //         //     where: {
+        //         //         blog_id: req.params.id
+        //         //     },
+        //         // })
+        //         // comments = comments.map(comment => comment.get({ plain: true }))
+
         res.render('blog', {
             blog,
+            // comments,
             logged_in: req.session.logged_in
         })
     }
@@ -70,20 +95,7 @@ router.get('/blog/:id', async (req, res) => {
     }
 })
 
-// serve up blogs on dashboard
-// router.get('/home', auth, async (req, res) => {
-//     console.log(req, res)
-//     try {
-//         let blog = await Blog.findAll({
-//         })
-//         res.render('home'{
-//             blog
-//         })
-//     }
-//     catch (error) {
-//         res.status(500).json(err)
-//     }
-// })
+
 
 
 router.get('/login', async (req, res) => {

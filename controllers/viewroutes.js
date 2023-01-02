@@ -86,6 +86,9 @@ router.get('/blog/:id', async (req, res) => {
 
         res.render('blog', {
             blog,
+            commentContent: blog.comments.map(comment => {
+                return comment.content
+            }),
             // comments,
             logged_in: req.session.logged_in
         })

@@ -10,9 +10,6 @@ User.hasMany(Blog, {
 Blog.belongsTo(User, {
     foreignKey: 'user_id'
 })
-// Blog.belongsTo(User, {
-//     foreignKey: 'user_name'
-// })
 User.hasMany(Comment, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
